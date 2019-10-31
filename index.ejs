@@ -1,0 +1,67 @@
+<% include partials/_header %>
+
+<div class="container" style="width: 100vh;">
+
+  <div class="row" style="width: 100vh;" >
+    <div class="col-md-5" style="width: 100vh;" >
+      <div class="card" style="width: 100vh;" >
+        <div class="card-body">
+          <form action="/add" method="post" >
+            <div class="form-group">
+              <input class="form-control" type="text" name="title" placeholder="Enter your subject">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="Expalin about it" cols="80"
+                placeholder="Add a Description"
+                ></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" style="background-color: blue;">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+    <div style="position:absolute;bottom:0px; width: 60%;">
+      <div>
+        <h2 style="text-align: center; color: blue;">OPERATIONS</h2>
+        </div>
+        
+      <table class="table table-bordered table-hover" style="width: 100%;">
+        <thead>
+          <tr>
+            <th>SI</th>
+            <th>subject</th>
+            <th>Explanation</th>
+            <th>Operation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= tasks[i].title %></strong></td>
+              <td><%= tasks[i].description %></td>
+              <td>
+                <a
+                  class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                  href="/turn/<%= tasks[i]._id %>">Done</a>
+                <a href="/delete/<%= tasks[i]._id %>"
+                  class="btn btn-danger">
+                  Delete
+                </a>
+                <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                  Edit
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
